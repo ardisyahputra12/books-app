@@ -1,0 +1,25 @@
+version: "3.3"
+services:
+  flask-app:
+    container_name: book-server
+    build: .
+    ports:
+      - 5000:5000
+    networks:
+      - backend
+    depends_on:
+      - db
+    env_file: .env
+    restart: always
+  db:
+    container_name: book-db
+    image: postgres:14
+    ports:
+      - 5432:5432
+    networks:
+      - backend
+    env_file: .env
+    restart: always
+networks:
+  backend:
+    driver: bridge
