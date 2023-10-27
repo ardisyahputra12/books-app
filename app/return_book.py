@@ -22,7 +22,7 @@ def return_book():
     book_details = run_query(select(books).where(books.c.title == title))
 
     if not book_details or book_details[0]["borrower"] != name:
-        return {"error": "You never borrow book <title>"}, 400
+        return {"error": f"You never borrow book {title}"}, 400
 
     run_query(
         update(books).where(books.c.title == title).values({"borrower": None}),
