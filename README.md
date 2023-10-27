@@ -4,7 +4,7 @@ Build web-based applications that run inside Docker containers, it has CRUD feat
 
 # Endpoints
 
-`/book` => [POST, GET, DELETE]
+`/book` => [POST, GET, DELETE, PUT]
 
 `/borrow` => [POST]
 
@@ -17,6 +17,7 @@ Use [Makefile](./Makefile) for simple commands.
 ## Requirements
 
 - Make sure docker and docker-compose are installed
+- Make sure service for docker is running
 
 ## Testing
 
