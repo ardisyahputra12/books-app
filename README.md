@@ -1,6 +1,6 @@
-# Books App
+# Library App
 
-Build web-based applications that run inside Docker containers, it has CRUD features and uses a Postgresql database as storage.
+Build web-based applications that run inside Docker containers, it has CRUD features and uses a PostgreSQL database as storage.
 
 # Endpoints
 

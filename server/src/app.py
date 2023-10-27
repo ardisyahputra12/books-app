@@ -2,6 +2,7 @@ from sqlalchemy import Column, MetaData, String, Table, inspect
 from sqlalchemy.exc import IntegrityError
 from utils import get_engine
 from flask import Flask
+from flask_cors import CORS
 
 from book import book_bp
 from borrow import borrow_bp
@@ -29,6 +30,9 @@ def create_app():
     for bp in blueprints:
         app.register_blueprint(bp)
 
+    # To allow CORS for all domains on all routes
+    CORS(app)
+    
     return app
 
 

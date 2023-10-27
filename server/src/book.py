@@ -22,16 +22,16 @@ def add_book():
     books = Table("books", MetaData(bind=get_engine()), autoload=True)
     try:
         run_query(insert(books).values({"title": title}), commit=True)
-        return {"message": f"Book {title} is added"}, 201
+        return {"message": f"Book '{title}' is added"}, 201
     except IntegrityError:
         # case: when the book already exists
-        return {"error": "Book with the same title already exists"}, 400
+        return {"error": "Failed! Book with the same title already exists"}, 400
 
 
 @book_bp.route("", methods=["GET"])
 def get_books():
     books_t = Table("books", MetaData(bind=get_engine()), autoload=True)
-    books = run_query(select([books_t.c.title, books_t.c.borrower]))
+    books = run_query(select([books_t.c.title, books_t.c.borrower]).order_by(books_t.c.title))
     return books
 
 
@@ -46,16 +46,16 @@ def delete_book():
 
     # case: book doesn't exist
     if not book_details:
-        return {"error": "Book is not known"}, 400
+        return {"error": "Failed! Book is not known"}, 400
 
     # case: book is currently borrowed
     borrower = book_details[0]["borrower"]
     if borrower:
-        return {"error": f"Book is currently borrowed by {borrower}"}, 403
+        return {"error": f"Failed! Book is currently borrowed by '{borrower}'"}, 403
 
     # remove book validly
     run_query(delete(books).where(books.c.title == title), commit=True)
-    return {"message": f"Book {title} is removed"}
+    return {"message": f"Book '{title}' is removed"}
 
 
 @book_bp.route("", methods=["PUT"])
@@ -70,21 +70,21 @@ def update_book():
 
     # case: book doesn't exist
     if not book_details:
-        return {"error": "Book is not known"}, 400
+        return {"error": "Failed! Book is not known"}, 400
 
     # case: book is currently borrowed
     borrower = book_details[0]["borrower"]
     if borrower:
-        return {"error": f"Book is currently borrowed by {borrower}"}, 403
+        return {"error": f"Failed! Book is currently borrowed by '{borrower}'"}, 403
     
     # case: book is not updated
     if title == new_title:
-        return {"message": f"The same book {title}"}, 200
+        return {"message": f"The same book '{title}'"}, 200
 
     # update book
     try:
         run_query(update(books).values({"title": new_title}).where(books.c.title == title), commit=True)
-        return {"message": f"Book {title} is updated to {new_title}"}, 200
+        return {"message": f"Book '{title}' is updated to '{new_title}'"}, 200
     except IntegrityError:
         # case: when the book already exists
-        return {"error": "Book with the same title already exists"}, 400
+        return {"error": "Failed! Book with the same title already exists"}, 400

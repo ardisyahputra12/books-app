@@ -24,7 +24,7 @@ def borrow_book():
 
     # case; book doesn't exist
     if not book_details:
-        return {"error": "Book is not known"}, 400
+        return {"error": "Failed! Book is not known"}, 400
 
     # check the borrower of this book
     borrower = book_details[0]["borrower"]
@@ -33,8 +33,8 @@ def borrow_book():
             update(books).where(books.c.title == title).values({"borrower": name}),
             commit=True,
         )
-        return {"message": f"Book {title} is borrowed by {name}"}
+        return {"message": f"Book '{title}' is borrowed by '{name}'"}
     elif borrower != name:
-        return {"error": f"Book is currently borrowed"}, 403
+        return {"error": f"Failed! Book is currently borrowed"}, 403
     elif borrower == name:
-        return {"error": "You are currently borrowing this book"}, 400
+        return {"error": "Failed! You are currently borrowing this book"}, 400

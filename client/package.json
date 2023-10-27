@@ -1,0 +1,48 @@
+{
+  "name": "library-app",
+  "version": "1.0.0",
+  "description": "Library app, manage books and book borrowers.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js",
+    "serve": "http-server dist --port 9000",
+    "build-serve": "npm run build && npm run serve",
+    "lint": "eslint ./src"
+  },
+  "keywords": [
+    "library-app",
+    "book"
+  ],
+  "author": "ardi_saputra <ardisaputraa12@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.18.5",
+    "@babel/preset-env": "^7.18.2",
+    "autoprefixer": "^10.4.14",
+    "babel-loader": "^8.2.5",
+    "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^6.7.1",
+    "eslint": "^8.44.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "html-webpack-plugin": "^5.5.0",
+    "http-server": "^14.1.1",
+    "mini-css-extract-plugin": "^2.7.6",
+    "postcss": "^8.4.27",
+    "postcss-loader": "^7.3.3",
+    "tailwindcss": "^3.3.3",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.9.2",
+    "webpack-merge": "^5.8.0",
+    "whatwg-fetch": "^3.6.2",
+    "workbox-webpack-plugin": "^7.0.0"
+  },
+  "dependencies": {
+    "clean-webpack-plugin": "^4.0.0",
+    "dotenv": "^16.3.1",
+    "regenerator-runtime": "^0.13.9",
+    "workbox-window": "^7.0.0"
+  }
+}

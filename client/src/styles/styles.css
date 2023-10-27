@@ -1,0 +1,139 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&family=Lato&family=Philosopher&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Philosopher", sans-serif;
+  color: #333;
+  scrollbar-width: thin;
+  scrollbar-color: #f45050 #fff;
+}
+
+body::-webkit-scrollbar {
+  width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #f45050;
+  border-radius: 20px;
+  border: 3px solid #fff;
+}
+
+p,
+li,
+button,
+input,
+select {
+  font-family: "Lato", sans-serif;
+}
+
+/* ========================= Content Empty ========================= */
+.content-empty {
+  height: 70vh;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.content-empty__text {
+  margin-top: 12px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* ========================= Skip Link ========================= */
+.skip {
+  text-decoration: none;
+  color: #000;
+  font-size: 24px;
+  background-color: #0f0;
+  padding: 10px;
+  position: absolute;
+  top: -100%;
+  z-index: 100;
+}
+
+.skip:focus {
+  top: 100px;
+}
+
+/* ========================= Components ========================= */
+@layer components {
+  .h-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: #f45050 #fff;
+  }
+
+  .h-scroll::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  .h-scroll::-webkit-scrollbar-track {
+    background: #fff;
+  }
+
+  .h-scroll::-webkit-scrollbar-thumb {
+    background-color: #f45050;
+    border-radius: 20px;
+    border: 3px solid #fff;
+  }
+
+  /* ========================= Section Components ========================= */
+  .section-container {
+    @apply py-12
+    px-2 lg:px-4;
+  }
+
+  .section-title-container {
+    @apply mb-6 lg:mb-8;
+  }
+
+  .section-title {
+    @apply text-center text-[#F45050] font-bold underline
+    text-2xl md:text-3xl;
+  }
+
+  .section-subtitle {
+    @apply text-center text-lg px-5;
+  }
+
+  .section-body-container {
+    @apply flex flex-row flex-wrap justify-center py-2;
+  }
+
+  /* ========================= Button Components ========================= */
+  .btn {
+    padding: 10px 30px !important;
+    @apply min-w-[44px] min-h-[44px] block my-3;
+  }
+
+  .btn-fill {
+    background-color: #f45050 !important;
+    @apply border rounded-lg text-white
+    hover:opacity-90;
+  }
+
+  .btn-outline {
+    @apply rounded-lg border border-[#F45050]
+    text-[#F45050] hover:text-white
+    hover:bg-[#F45050];
+  }
+
+  /* ========================= Form Components ========================= */
+  .form-input {
+    @apply w-full mb-3 border p-3 rounded-md focus:outline-[#f45050];
+  }
+}
