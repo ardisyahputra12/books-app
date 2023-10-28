@@ -1,12 +1,23 @@
 version: "3.3"
 services:
+  client:
+    container_name: library-client
+    build: ./client
+    ports:
+      - 9000:9000
+    networks:
+      - library-app
+    depends_on:
+      - server
+    env_file: ./client/.env
+    restart: always
   server:
     container_name: library-server
     build: ./server
     ports:
       - 5000:5000
     networks:
-      - backend
+      - library-app
     depends_on:
       - db
     env_file: ./server/.env
@@ -17,9 +28,9 @@ services:
     ports:
       - 5432:5432
     networks:
-      - backend
+      - library-app
     env_file: ./server/.env
     restart: always
 networks:
-  backend:
+  library-app:
     driver: bridge
