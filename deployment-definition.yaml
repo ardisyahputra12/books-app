@@ -1,0 +1,25 @@
+# File: deployment-definition.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: library-client-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: library-client
+  template:
+    metadata:
+      labels:
+        app: library-client
+    spec:
+      containers:
+        - name: library-client-container
+          image: your-registry/library-client:latest
+          ports:
+            - containerPort: 9000
+      envFrom:
+        - configMapRef:
+            name: library-client-configmap
+        - secretRef:
+            name: library-client-secret

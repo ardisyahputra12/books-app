@@ -1,0 +1,5 @@
+# File: liveness-probe.yaml
+livenessProbe:
+  httpGet:
+    path: /health
+    port: 9000
