@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: library-client-container
-          image: your-registry/library-client:latest
+          image: ./client
           ports:
             - containerPort: 9000
       envFrom:

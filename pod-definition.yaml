@@ -6,7 +6,7 @@ metadata:
 spec:
   containers:
     - name: library-client-container
-      image: your-registry/library-client:latest
+      image: ./client
       ports:
         - containerPort: 9000
   envFrom:
@@ -24,7 +24,7 @@ metadata:
 spec:
   containers:
     - name: library-server-container
-      image: your-registry/library-server:latest
+      image: ./server
       ports:
         - containerPort: 5000
   envFrom:
