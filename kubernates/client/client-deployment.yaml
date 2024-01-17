@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: library-client
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: library-client
+  template:
+    metadata:
+      labels:
+        app: library-client
+    spec:
+      containers:
+        - name: library-client
+          image: ardisyahputra12/library-client:latest
+          ports:
+            - containerPort: 9000
+          env:
+            - name: BASE_URL_SOURCE
+              valueFrom:
+                secretKeyRef:
+                  name: client-secret
+                  key: BASE_URL_SOURCE

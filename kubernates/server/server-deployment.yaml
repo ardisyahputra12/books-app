@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: library
+  name: library-server
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: library
+      app: library-server
   template:
     metadata:
       labels:
-        app: library
+        app: library-server
     spec:
       containers:
         - name: library-server
-          image: ardisyahputra12/library-app:latest
+          image: ardisyahputra12/library-server:latest
           ports:
             - containerPort: 5000
           env:
